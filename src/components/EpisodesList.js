@@ -6,9 +6,6 @@ export default function EpisodesList() {
     const [episode, setEpisode] = useState([]);
 
     useEffect(() => {
-        // TODO: Add AJAX/API Request here - must run in `useEffect`
-        // https://rickandmortyapi.com/api/episode/
-        // Important: verify the 2nd `useEffect` parameter: the dependancies array!
         axios.get("https://rickandmortyapi.com/api/episode/")
             .then(res => {
                 console.log(res.data.results);
