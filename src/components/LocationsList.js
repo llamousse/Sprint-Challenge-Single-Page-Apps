@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Card } from 'semantic-ui-react'
+import LocationCard from './LocationCard.js';
 
 export default function LocationsList() {
     const [location, setLocation] = useState([]);
@@ -19,13 +19,14 @@ export default function LocationsList() {
     return (
         <section className='character-list grid-view'>
             {location.map((data, index) => (
-                <Card id={data.id} key={index}>
-                    <Card.Content>
-                        <Card.Header>{data.type}</Card.Header>
-                        <Card.Description>{data.type} - {data.dimension}</Card.Description>
-                    </Card.Content>
-                    <Card.Content extra>{data.residents.length} residents</Card.Content>
-                </Card>
+                <LocationCard 
+                    id={data.id}
+                    key={data.index}
+                    name={data.name}
+                    type={data.type}
+                    dimension={data.dimension}
+                    residents={data.residents.length}
+                />
             ))}
         </section>
     );

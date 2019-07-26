@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Card } from 'semantic-ui-react'
+import EpisodesCard from './EpisodesCard.js';
 
 export default function EpisodesList() {
     const [episode, setEpisode] = useState([]);
@@ -19,14 +19,14 @@ export default function EpisodesList() {
     return (
         <section className='character-list grid-view'>
             {episode.map((data, index) => (
-                <Card id={data.id} key={index}>
-                    <Card.Content>
-                        <Card.Header>{data.episode}: {data.name}</Card.Header>
-                        <Card.Meta>Air Date: {data.air_date}</Card.Meta>
-                        {/* <Card.Description>{data.characters.length} characters</Card.Description> */}
-                    </Card.Content>
-                    <Card.Content extra>{data.characters.length} characters</Card.Content>
-                </Card>
+                <EpisodesCard
+                    id={data.id}
+                    index={index}
+                    episode={data.episode}
+                    name={data.name}
+                    airDate={data.air_date}
+                    chars={data.characters.length}
+                />
             ))}
         </section>
     );

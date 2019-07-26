@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Card, Icon, Image } from 'semantic-ui-react'
+import CharacterCard from './CharacterCard.js';
 
 export default function CharacterList() {
-  // TODO: Add useState to track data from useEffect
   const [character, setCharacter] = useState([]);
 
   useEffect(() => {
@@ -20,21 +19,16 @@ export default function CharacterList() {
   return (
     <section className='character-list grid-view'>
       {character.map((data, index) => (
-        <Card id={data.id} key={index}>
-          <Image src={data.image} wrapped ui={false} />
-          <Card.Content>
-            <Card.Header>{data.name}</Card.Header>
-            <Card.Meta>{data.species} / {data.status}</Card.Meta>
-            <Card.Description>Location: {data.location.name}</Card.Description>
-            <Card.Description>Origin: {data.origin.name}</Card.Description>
-          </Card.Content>
-          <Card.Content extra>
-            <a href="#">
-              <Icon name='user' />
-              Episodes
-            </a>
-          </Card.Content>
-        </Card>
+        <CharacterCard 
+          id={data.id}
+          index={index}
+          src={data.image}
+          name={data.name}
+          species={data.species}
+          status={data.status}
+          location={data.location.name}
+          origin={data.origin.name}
+        /> 
       ))}
     </section>
   );
