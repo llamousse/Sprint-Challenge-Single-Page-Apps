@@ -22,8 +22,8 @@ export default function CharacterList() {
 
   return (
     <section className='character-list grid-view'>
-      {character.map((data) => (
-        <Card id={data.id}>
+      {character.map((data, index) => (
+        <Card id={data.id} key={index}>
           <Image src={data.image} wrapped ui={false} />
           <Card.Content>
             <Card.Header>{data.name}</Card.Header>
@@ -32,7 +32,7 @@ export default function CharacterList() {
             <Card.Description>Origin: {data.origin.name}</Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <a>
+            <a href="#">
               <Icon name='user' />
               Episodes
             </a>
