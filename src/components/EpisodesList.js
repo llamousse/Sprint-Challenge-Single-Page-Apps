@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import LocationCard from './LocationCard.js';
+import EpisodesCard from './EpisodesCard.js';
 
-export default function LocationsList() {
-    const [location, setLocation] = useState([]);
+export default function EpisodesList() {
+    const [episode, setEpisode] = useState([]);
 
     useEffect(() => {
-        axios.get("https://rickandmortyapi.com/api/location/")
+        axios.get("https://rickandmortyapi.com/api/episode/")
             .then(res => {
                 console.log(res.data.results);
-                setLocation(res.data.results);
+                setEpisode(res.data.results);
             })
             .catch(err => {
                 console.log("Error! Rick and Morty want some privacy: ", err);
@@ -18,14 +18,14 @@ export default function LocationsList() {
 
     return (
         <section className='character-list grid-view'>
-            {location.map((data, index) => (
-                <LocationCard 
+            {episode.map((data, index) => (
+                <EpisodesCard
                     id={data.id}
-                    key={data.index}
+                    index={index}
+                    episode={data.episode}
                     name={data.name}
-                    type={data.type}
-                    dimension={data.dimension}
-                    residents={data.residents.length}
+                    airDate={data.air_date}
+                    chars={data.characters.length}
                 />
             ))}
         </section>
